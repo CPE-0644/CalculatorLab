@@ -201,25 +201,52 @@ namespace CPE200Lab1
             resetAll();
         }
 
-        //private string memory;
-        //private void btnMemory_Click(object sender, EventArgs e)
-        //{
+        private string memory;
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
 
-        //    string function = ((Button)sender).Text;
-        //    Console.WriteLine(function);
-        //    switch (function)
-        //    {
-        //        case "btnMemStore":
-        //            memory = lblDisplay.Text;
-        //            break;
-        //    }
-        //    Console.WriteLine(memory);
-        //    if (memory != null)
-        //    {
-        //        btnMemClear.ForeColor = System.Drawing.Color.Black;
-        //        btnMemRecall.ForeColor = System.Drawing.Color.Black;
-        //    }
-        //}
+            string function = ((Button)sender).Text;
+            Console.WriteLine(function);
+            switch (function)
+            {
+                case "MC":
+                    memory = null;
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory;
+                    break;
+                case "M+":
+                    if(memory == null)
+                        memory = lblDisplay.Text;
+                    else
+                    {
+                        memory = engine.Calculate("+", memory, lblDisplay.Text);
+                    }
+                    break;
+                case "M-":
+                    if (memory == null)
+                        memory = lblDisplay.Text;
+                    else
+                    {
+                        memory = engine.Calculate("-", memory,lblDisplay.Text);
+                    }
+                    break;
+                case "MS":
+                    memory = lblDisplay.Text;
+                    break;
+            }
+            Console.WriteLine(memory);
+            if (memory != null)
+            {
+                btnMemClear.ForeColor = System.Drawing.Color.Black;
+                btnMemRecall.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                btnMemClear.ForeColor = System.Drawing.Color.Silver;
+                btnMemRecall.ForeColor = System.Drawing.Color.Silver;
+            }
+        }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
