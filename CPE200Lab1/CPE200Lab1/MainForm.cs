@@ -123,11 +123,10 @@ namespace CPE200Lab1
                     secondOperand = lblDisplay.Text;
                     result = engine.Calculate(operate, firstOperand, secondOperand);
                     lblDisplay.Text = result;
-                    // result = engine.Calculate(lastOperate, firstOperand, result);
-                    // lblDisplay.Text = result;
                     break;
             }
             isAllowBack = false;
+            hasDot = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -201,6 +200,26 @@ namespace CPE200Lab1
         {
             resetAll();
         }
+
+        //private string memory;
+        //private void btnMemory_Click(object sender, EventArgs e)
+        //{
+
+        //    string function = ((Button)sender).Text;
+        //    Console.WriteLine(function);
+        //    switch (function)
+        //    {
+        //        case "btnMemStore":
+        //            memory = lblDisplay.Text;
+        //            break;
+        //    }
+        //    Console.WriteLine(memory);
+        //    if (memory != null)
+        //    {
+        //        btnMemClear.ForeColor = System.Drawing.Color.Black;
+        //        btnMemRecall.ForeColor = System.Drawing.Color.Black;
+        //    }
+        //}
 
         private void btnBack_Click(object sender, EventArgs e)
         {
