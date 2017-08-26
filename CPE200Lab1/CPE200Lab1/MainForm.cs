@@ -18,7 +18,9 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private bool isAlreadyOperater;
         private string firstOperand;
-        private string operate;
+        private string operate, lastOperate;
+
+        private CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -28,51 +30,13 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             isAlreadyOperater = false;
-        }
-
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch (operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if (secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
+            lastOperate = "";
         }
 
         public MainForm()
         {
             InitializeComponent();
-
+            engine = new CalculatorEngine();
             resetAll();
         }
 
@@ -84,7 +48,9 @@ namespace CPE200Lab1
             }
             if (isAfterEqual)
             {
-                resetAll();
+                isAllowBack = true;
+                isAfterOperater = true;
+                isAfterEqual = false;
             }
             if (isAfterOperater)
             {
@@ -115,6 +81,7 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+            string secondOperand, result;
             switch (operate)
             {
                 case "+":
@@ -123,9 +90,9 @@ namespace CPE200Lab1
                 case "÷":
                     if (isAlreadyOperater)
                     {
-
-                        string secondOperand = lblDisplay.Text;
-                        string result = calculate(operate, firstOperand, secondOperand);
+                        secondOperand = lblDisplay.Text;
+                        Console.WriteLine(firstOperand + " " + lastOperate + " " + secondOperand);
+                        result = engine.Calculate(lastOperate, firstOperand, secondOperand);
                         if (result is "E" || result.Length > 8)
                         {
                             lblDisplay.Text = "Error";
@@ -134,17 +101,30 @@ namespace CPE200Lab1
                         {
                             lblDisplay.Text = result;
                         }
+                        lastOperate = operate;
+                        firstOperand = lblDisplay.Text;
+                        isAfterOperater = true;
+                        isAlreadyOperater = true;
                     }
                     else
                     {
-                        isAlreadyOperater = true;
+                        Console.WriteLine("operate in stack is empty");
+                        if (lblDisplay.Text != null)
+                        {
+
+                        }
+                        lastOperate = operate;
                         firstOperand = lblDisplay.Text;
                         isAfterOperater = true;
+                        isAlreadyOperater = true;
                     }
                     break;
-
                 case "%":
-                    // your code here
+                    secondOperand = lblDisplay.Text;
+                    result = engine.Calculate(operate, firstOperand, secondOperand);
+                    lblDisplay.Text = result;
+                    // result = engine.Calculate(lastOperate, firstOperand, result);
+                    // lblDisplay.Text = result;
                     break;
             }
             isAllowBack = false;
@@ -157,7 +137,8 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            Console.WriteLine(firstOperand + " " + operate + " " + secondOperand);
+            string result = engine.Calculate(lastOperate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
