@@ -54,6 +54,8 @@
             this.btnMemAdd = new System.Windows.Forms.Button();
             this.btnMemDel = new System.Windows.Forms.Button();
             this.btnMemStore = new System.Windows.Forms.Button();
+            this.btnSqrt = new System.Windows.Forms.Button();
+            this.btnRvs = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn7
@@ -314,7 +316,7 @@
             // 
             this.btnMemClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMemClear.ForeColor = System.Drawing.Color.Silver;
-            this.btnMemClear.Location = new System.Drawing.Point(712, 273);
+            this.btnMemClear.Location = new System.Drawing.Point(712, 15);
             this.btnMemClear.Margin = new System.Windows.Forms.Padding(6);
             this.btnMemClear.Name = "btnMemClear";
             this.btnMemClear.Size = new System.Drawing.Size(161, 118);
@@ -326,8 +328,8 @@
             // btnMemRecall
             // 
             this.btnMemRecall.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMemRecall.Location = new System.Drawing.Point(712, 402);
             this.btnMemRecall.ForeColor = System.Drawing.Color.Silver;
+            this.btnMemRecall.Location = new System.Drawing.Point(712, 144);
             this.btnMemRecall.Margin = new System.Windows.Forms.Padding(6);
             this.btnMemRecall.Name = "btnMemRecall";
             this.btnMemRecall.Size = new System.Drawing.Size(161, 118);
@@ -339,7 +341,7 @@
             // btnMemAdd
             // 
             this.btnMemAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMemAdd.Location = new System.Drawing.Point(712, 532);
+            this.btnMemAdd.Location = new System.Drawing.Point(712, 274);
             this.btnMemAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnMemAdd.Name = "btnMemAdd";
             this.btnMemAdd.Size = new System.Drawing.Size(161, 118);
@@ -351,7 +353,7 @@
             // btnMemDel
             // 
             this.btnMemDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMemDel.Location = new System.Drawing.Point(712, 661);
+            this.btnMemDel.Location = new System.Drawing.Point(712, 403);
             this.btnMemDel.Margin = new System.Windows.Forms.Padding(6);
             this.btnMemDel.Name = "btnMemDel";
             this.btnMemDel.Size = new System.Drawing.Size(161, 118);
@@ -363,7 +365,7 @@
             // btnMemStore
             // 
             this.btnMemStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMemStore.Location = new System.Drawing.Point(712, 790);
+            this.btnMemStore.Location = new System.Drawing.Point(712, 532);
             this.btnMemStore.Margin = new System.Windows.Forms.Padding(6);
             this.btnMemStore.Name = "btnMemStore";
             this.btnMemStore.Size = new System.Drawing.Size(161, 118);
@@ -372,11 +374,37 @@
             this.btnMemStore.UseVisualStyleBackColor = true;
             this.btnMemStore.Click += new System.EventHandler(this.btnMemory_Click);
             // 
+            // btnSqrt
+            // 
+            this.btnSqrt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSqrt.Location = new System.Drawing.Point(712, 660);
+            this.btnSqrt.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSqrt.Name = "btnSqrt";
+            this.btnSqrt.Size = new System.Drawing.Size(161, 118);
+            this.btnSqrt.TabIndex = 26;
+            this.btnSqrt.Text = "sqrt";
+            this.btnSqrt.UseVisualStyleBackColor = true;
+            this.btnSqrt.Click += new System.EventHandler(this.btnOperator_Click);
+            // 
+            // btnRvs
+            // 
+            this.btnRvs.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRvs.Location = new System.Drawing.Point(712, 790);
+            this.btnRvs.Margin = new System.Windows.Forms.Padding(6);
+            this.btnRvs.Name = "btnRvs";
+            this.btnRvs.Size = new System.Drawing.Size(161, 118);
+            this.btnRvs.TabIndex = 27;
+            this.btnRvs.Text = "1/x";
+            this.btnRvs.UseVisualStyleBackColor = true;
+            this.btnRvs.Click += new System.EventHandler(this.btnOperator_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 938);
+            this.Controls.Add(this.btnRvs);
+            this.Controls.Add(this.btnSqrt);
             this.Controls.Add(this.btnMemStore);
             this.Controls.Add(this.btnMemDel);
             this.Controls.Add(this.btnMemAdd);
@@ -439,6 +467,8 @@
         private System.Windows.Forms.Button btnMemAdd;
         private System.Windows.Forms.Button btnMemDel;
         private System.Windows.Forms.Button btnMemStore;
+        private System.Windows.Forms.Button btnSqrt;
+        private System.Windows.Forms.Button btnRvs;
     }
 }
 

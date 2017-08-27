@@ -46,6 +46,27 @@ namespace CPE200Lab1
                     result = (Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand);
                     return result.ToString();
                     break;
+                case "sqrt":
+                    //your code here
+                    result = Convert.ToDouble(firstOperand);
+                    result = Math.Sqrt(result);
+                    if (result.ToString().Length > 8)
+                        return result.ToString("0.000000");
+                    else return result.ToString();
+                    break;
+                case "1/x":
+                    //your code here
+                    if (firstOperand == "0") return "Cannot Divide by Zero";
+                    else
+                    {
+                        result = Convert.ToDouble(firstOperand);
+                        result = 1.0 / result;
+                        if (result.ToString().Length > 8)
+                            return result.ToString("0.000000");
+                        else return result.ToString();
+                    }
+
+                    break;
             }
             return "E";
         }
