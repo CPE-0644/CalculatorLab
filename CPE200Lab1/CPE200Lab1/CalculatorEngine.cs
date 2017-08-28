@@ -17,7 +17,9 @@ namespace CPE200Lab1
                 case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
+                    result = Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand);
+                    if (result.ToString().Length >= 7) return result.ToString("0.00000");
+                    else return result.ToString();
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
