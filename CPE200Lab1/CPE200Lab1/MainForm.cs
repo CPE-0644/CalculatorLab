@@ -124,6 +124,12 @@ namespace CPE200Lab1
                     result = engine.Calculate(operate, firstOperand, secondOperand);
                     lblDisplay.Text = result;
                     break;
+                case "sqrt":
+                case "1/x":
+                    firstOperand = lblDisplay.Text;
+                    result = engine.Calculate(operate, firstOperand, "0");
+                    lblDisplay.Text = result;
+                    break;
             }
             isAllowBack = false;
             hasDot = false;
@@ -247,7 +253,7 @@ namespace CPE200Lab1
                 btnMemRecall.ForeColor = System.Drawing.Color.Silver;
             }
         }
-
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
