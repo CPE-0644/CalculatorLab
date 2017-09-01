@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace CPE200Lab1
@@ -27,15 +28,31 @@ namespace CPE200Lab1
         }
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            int index;
+            //string[] parts = str.Split(' ');
+            //if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            //{
+            //    return "E";
+            //} else
+            //{
+            //    return calculate(parts[1], parts[0], parts[2], 4);
+            //}
+            index = str.IndexOf("÷");
+            while ((index = str.IndexOf("÷")) != -1)
             {
-                return "E";
-            } else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
+                string substr = str.Substring(index - 2, 5);
+                Console.WriteLine(str.Substring(index-2,5));
+                string[] parts = substr.Split(' ');
+                str = str.Replace(str.Substring(index - 2, 5),calculate(parts[1], parts[0], parts[2], 4));
+                //str.Replace(str.Substring(index - 2, 5), "");
+                Console.WriteLine("***"+str);
+                
             }
-
+            Console.WriteLine(str.IndexOf("÷"));
+            //str = str.Replace("X", "*").Replace("÷", "/");
+            //string value = new DataTable().Compute(str, null).ToString();
+            return "";
+          
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
