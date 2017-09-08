@@ -27,37 +27,30 @@ namespace CPE200Lab1
             }
             return false;
         }
+
         public string Process(string str)
         {
-            //int index;
-            //string value;
-            //string[] parts = str.Split(' ');
-            //for (int i = 0; i < parts.Length; i++) Console.Write(parts[i]);
-            //  Console.WriteLine(Array.IndexOf(parts,"÷"));
-            // while ((index = Array.IndexOf(parts, "÷")) != -1)
-            //{
-            //index = str.IndexOf("÷");
-            //Console.WriteLine(parts[index-1] + " " + parts[index] + " " + parts[index + 1]);
-            //value = calculate(parts[index], parts[index - 1], parts[index + 1], 4);
-            //Console.WriteLine(index - 1 - parts[index].Length);
-            //   Console.WriteLine(parts[index - 1].Length + parts[index].Length + parts[index + 1].Length );
-            //    string substr = str.Substring(index - parts[index - 1].Length, parts[index - 1].Length + parts[index + 1].Length + 2);
-            //    str = str.Replace(substr, value);
-            //Console.WriteLine(str);
-            //}
-
-            //if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            //{
-            //    return "E";
-            //}
-            //else
-            //{
-            //    return calculate(parts[1], parts[0], parts[2], 4);
-            //}
-            str = str.Replace("X", "*").Replace("÷", "/");
-            string value = new DataTable().Compute(str, null).ToString();
-            return value;
-
+            //Split input string to multiple parts by space
+            List<string> parts = str.Split(' ').ToList<string>();
+            string result;
+            //As long as we have more than one part
+            while(parts.Count > 1)
+            {
+                //Check if the first three is ready for calcuation
+                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+                {
+                    return "E";
+                } else
+                {
+                    //Calculate the first three
+                    result = calculate(parts[1], parts[0], parts[2], 4);
+                    //Remove the first three
+                    parts.RemoveRange(0, 3);
+                    // Put back the result
+                    parts.Insert(0, result);
+                }
+            }
+            return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
