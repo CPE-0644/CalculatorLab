@@ -39,7 +39,7 @@ namespace CPE200Lab1
                 //Check if the first three is ready for calcuation
                 if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
                 {
-                    return "E";
+                    return "Mind";
                 } else
                 {
                     //Calculate the first three

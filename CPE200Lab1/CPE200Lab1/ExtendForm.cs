@@ -15,12 +15,12 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -63,9 +63,9 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ')
+           // if (current[current.Length-1] != ' ')
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text + "";
                 isSpaceAllowed = false;
             }
         }
@@ -145,7 +145,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
+           // if(!isContainDot)
             {
                 isContainDot = true;
                 lblDisplay.Text += ".";
